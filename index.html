@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Prachi 💜</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Dancing+Script:wght@400;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#06001A;--violet:#5B21B6;--lav:#C4B5FD;
+  --gold:#F59E0B;--gl:#FDE68A;--w:#FAF5FF;
+  --glass:rgba(255,255,255,.055);--gb:rgba(245,158,11,.22);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--w);font-family:'Raleway',sans-serif;overflow-x:hidden;cursor:none;}
+
+.page{display:none;min-height:100vh;position:relative;}
+.page.active{display:block;}
+
+/* NAV */
+#navbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(6,0,26,.92);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--gb);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;height:54px;
+}
+.nav-logo{font-family:'Dancing Script',cursive;font-size:1.3rem;color:var(--gold);white-space:nowrap;}
+.nav-links{display:flex;gap:4px;flex-wrap:nowrap;}
+.nav-btn{
+  background:none;border:1px solid transparent;cursor:pointer;
+  font-family:'Raleway',sans-serif;font-size:.68rem;font-weight:600;
+  letter-spacing:1.5px;text-transform:uppercase;color:rgba(196,181,253,.5);
+  padding:6px 11px;border-radius:100px;transition:all .25s;white-space:nowrap;
+}
+.nav-btn:hover,.nav-btn.on{color:var(--gold);background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.25);}
+@media(max-width:700px){
+  .nav-links{gap:1px;}
+  .nav-btn{font-size:.55rem;padding:5px 7px;letter-spacing:0px;}
+  #navbar{padding:0 10px;}
+  .nav-logo{font-size:1rem;}
+}
+
+/* CANVASES */
+canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;}
+#bgCv{z-index:0;}
+#fxCv{z-index:12;}
+
+/* CURSOR */
+#cur{position:fixed;width:14px;height:14px;background:var(--gold);border-radius:50%;
+  pointer-events:none;z-index:9999;transform:translate(-50%,-50%);
+  box-shadow:0 0 12px var(--gold),0 0 28px rgba(245,158,11,.4);}
+.trail{position:fixed;pointer-events:none;z-index:9998;font-size:13px;line-height:1;
+  animation:tr .85s ease forwards;}
+@keyframes tr{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-30px) scale(.15)}}
+
+/* FLOATERS */
+.floater{position:fixed;pointer-events:none;z-index:1;animation:fall linear infinite;opacity:.4;}
+@keyframes fall{0%{transform:translateY(-30px) rotate(0deg);opacity:0}10%{opacity:.4}90%{opacity:.25}100%{transform:translateY(110vh) rotate(360deg);opacity:0}}
+
+/* PAGE FADE */
+.page-fade{animation:pfade .55s ease both;}
+@keyframes pfade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* PAGE NAV ARROWS — fixed bottom centre */
+.parrow{
+  position:fixed;bottom:24px;z-index:200;
+  background:rgba(6,0,26,.88);border:1px solid rgba(245,158,11,.3);
+  border-radius:100px;padding:10px 26px;font-size:.72rem;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;color:rgba(245,158,11,.8);
+  cursor:pointer;transition:all .25s;font-family:'Raleway',sans-serif;
+  backdrop-filter:blur(10px);
+}
+.parrow:hover{background:rgba(245,158,11,.18);color:var(--gold);}
+#pPrev{left:calc(50% - 120px);transform:translateX(-50%);}
+#pNext{left:calc(50% + 120px);transform:translateX(-50%);}
+
+/* ══════════ PAGE 1 — HERO ══════════ */
+.hero{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding:80px 24px 100px;}
+.hglow{position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 55%,rgba(91,33,182,.38) 0%,transparent 65%);
+  animation:gp 4s ease-in-out infinite;}
+@keyframes gp{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.15)}}
+.h-eye{font-family:'Dancing Script',cursive;font-size:clamp(1.4rem,3.5vw,2.2rem);
+  color:var(--gold);letter-spacing:4px;margin-bottom:16px;}
+.h-name{font-family:'Playfair Display',serif;font-size:clamp(5rem,17vw,11rem);font-weight:900;line-height:.88;
+  background:linear-gradient(135deg,#C77B06 0%,#FDE68A 35%,#F59E0B 65%,#FFFBEB 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 45px rgba(245,158,11,.45));cursor:pointer;}
+.h-name:hover{filter:drop-shadow(0 0 70px rgba(245,158,11,.75));}
+.h-nick{font-family:'Dancing Script',cursive;font-size:clamp(1.1rem,2.8vw,1.7rem);
+  color:var(--lav);margin-top:14px;letter-spacing:2px;}
+.h-rule{width:150px;height:1.5px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:26px auto;}
+.h-tag{font-size:.8rem;color:rgba(196,181,253,.5);letter-spacing:5px;text-transform:uppercase;margin-bottom:36px;}
+.pg-dots{display:flex;gap:10px;justify-content:center;margin-top:8px;}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(196,181,253,.25);
+  cursor:pointer;transition:background .25s,transform .25s;}
+.dot:hover,.dot.on{background:var(--gold);transform:scale(1.3);}
+.pg-hint{font-size:.65rem;letter-spacing:4px;color:rgba(196,181,253,.3);text-transform:uppercase;margin-top:12px;}
+
+/* SHARED BLOCK */
+.blk{position:relative;z-index:2;padding:80px 24px 80px;max-width:1120px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;}
+.eye{font-family:'Dancing Script',cursive;font-size:1.2rem;color:var(--gold);text-align:center;margin-bottom:5px;}
+.sh{font-family:'Playfair Display',serif;font-size:clamp(1.75rem,4.5vw,2.7rem);font-weight:700;
+  text-align:center;color:var(--w);margin-bottom:44px;line-height:1.25;}
+
+/* ══════════ PAGE 2 — CAKE ══════════ */
+.cake-wrap{display:flex;flex-direction:column;align-items:center;width:100%;}
+.cake-scene{
+  display:flex;flex-direction:column;align-items:center;
+  gap:0;position:relative;
+  margin-bottom:36px;
+  padding-top:80px; /* room for candles above top tier */
+}
+.tier{position:relative;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.t1{width:145px;height:52px;background:linear-gradient(135deg,#7C3AED,#5B21B6);}
+.t2{width:205px;height:62px;background:linear-gradient(135deg,#6D28D9,#4C1D95);}
+.t3{width:270px;height:76px;background:linear-gradient(135deg,#5B21B6,#3B0764);}
+.tier::before{content:'';position:absolute;inset:0;border-radius:10px;
+  background:repeating-linear-gradient(90deg,transparent,transparent 18px,rgba(245,158,11,.14) 18px,rgba(245,158,11,.14) 20px);}
+.tier::after{content:'';position:absolute;inset:0;border-radius:10px;
+  background:linear-gradient(to bottom,rgba(255,255,255,.08),transparent 40%,rgba(0,0,0,.1));}
+
+/* candles sit above t1 */
+.candles-row{
+  position:absolute;
+  top:0; /* top of .t1 */
+  left:50%;
+  transform:translate(-50%, -100%);
+  display:flex;gap:18px;
+}
+.cw{display:flex;flex-direction:column;align-items:center;}
+.cbody{width:10px;height:34px;border-radius:3px 3px 1px 1px;}
+.c1{background:linear-gradient(to bottom,#F472B6,#EC4899);}
+.c2{background:linear-gradient(to bottom,var(--gold),#D97706);}
+.c3{background:linear-gradient(to bottom,#A78BFA,#7C3AED);}
+.c4{background:linear-gradient(to bottom,#34D399,#059669);}
+.c5{background:linear-gradient(to bottom,#F87171,#EF4444);}
+.flame{width:12px;height:18px;
+  background:radial-gradient(ellipse at 50% 80%,#FDE68A 0%,#F59E0B 40%,#EF4444 100%);
+  border-radius:50% 50% 30% 30%/60% 60% 40% 40%;
+  animation:flkr .25s ease-in-out infinite alternate;transform-origin:bottom;
+  filter:blur(.5px);box-shadow:0 0 8px var(--gold),0 0 18px rgba(245,158,11,.55);transition:all .4s;}
+.flame.out{opacity:0;height:3px;width:3px;animation:none;box-shadow:none;filter:none;}
+@keyframes flkr{from{transform:scaleX(1) rotate(-3deg) scaleY(1)}to{transform:scaleX(.72) rotate(3deg) scaleY(1.14)}}
+.plate{width:295px;height:14px;background:linear-gradient(to right,transparent,rgba(255,255,255,.07),transparent);
+  border-radius:50%;margin-top:4px;}
+.blow-btn{margin-top:28px;padding:13px 34px;
+  background:linear-gradient(135deg,var(--gold),#D97706);border:none;border-radius:100px;
+  font-family:'Raleway',sans-serif;font-size:1rem;font-weight:600;color:#1a0030;cursor:pointer;
+  box-shadow:0 0 22px rgba(245,158,11,.4);transition:transform .2s,box-shadow .2s;}
+.blow-btn:hover{transform:scale(1.06);box-shadow:0 0 40px rgba(245,158,11,.65);}
+.blow-btn:disabled{opacity:.7;cursor:default;}
+.wish{margin-top:30px;text-align:center;opacity:0;transition:opacity .9s ease;pointer-events:none;}
+.wish.show{opacity:1;pointer-events:auto;}
+.wish-emoji{font-size:2.5rem;display:block;margin-bottom:12px;}
+.wish-text{font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(1rem,2.5vw,1.4rem);color:var(--gl);line-height:1.75;}
+
+/* ══════════ PAGE 3 — PHOTOS ══════════ */
+.pg6{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;padding:8px 0;width:100%;}
+@media(max-width:640px){.pg6{grid-template-columns:repeat(2,1fr);gap:14px;}}
+@media(max-width:380px){.pg6{grid-template-columns:1fr;}}
+.pol{background:#fff;padding:8px 8px 45px;box-shadow:4px 6px 24px rgba(0,0,0,.5);
+  transform:rotate(var(--r,0deg));transition:transform .35s cubic-bezier(.23,1.1,.6,1),box-shadow .35s;
+  cursor:pointer;position:relative;}
+.pol:nth-child(1){--r:-3deg;}.pol:nth-child(2){--r:2.5deg;}
+.pol:nth-child(3){--r:-1.5deg;}.pol:nth-child(4){--r:3deg;}
+.pol:nth-child(5){--r:-2deg;}.pol:nth-child(6){--r:1.5deg;}
+.pol:nth-child(7){--r:2deg;}.pol:nth-child(8){--r:-2.5deg;}
+.pol:nth-child(9){--r:1deg;}.pol:nth-child(10){--r:-1.5deg;}
+.pol:nth-child(11){--r:2.5deg;}.pol:nth-child(12){--r:-2deg;}
+.pib{width:100%;aspect-ratio:1;background:#f0e8ff;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;overflow:hidden;position:relative;}
+.pib img{width:100%;height:100%;object-fit:contain;display:none;background:#fff;}
+.pph{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:9px;text-align:center;padding:14px;position:absolute;inset:0;transition:opacity .3s;}
+.pph .ic{font-size:2.4rem;}.pph .ht{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:#9B59B6;font-family:'Raleway',sans-serif;font-weight:600;}
+.pcap{position:absolute;bottom:0;left:0;right:0;height:50px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Dancing Script',cursive;font-size:.9rem;color:#3a3a3a;text-align:center;padding:0 8px;}
+
+/* ══════════ PAGE 4 — MESSAGE ══════════ */
+.mout{display:flex;justify-content:center;width:100%;}
+.mcrd{background:var(--glass);border:1.5px solid var(--gb);border-radius:26px;padding:52px 50px;
+  backdrop-filter:blur(14px);max-width:780px;width:100%;position:relative;
+  box-shadow:0 0 100px rgba(91,33,182,.22),inset 0 1px 0 rgba(255,255,255,.05);}
+.mcrd::before{content:'\201C';position:absolute;top:-16px;left:28px;
+  font-family:'Playfair Display',serif;font-size:9rem;color:var(--gold);opacity:.17;line-height:1;}
+.mtxt{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(.9rem,1.9vw,1.08rem);
+  line-height:1.85;color:var(--lav);text-align:left;position:relative;z-index:1;}
+.mtxt .hl{color:var(--gl);font-style:normal;font-weight:700;}
+.mtxt .hl2{color:#e9d5ff;font-style:normal;}
+.msig{margin-top:30px;text-align:right;font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(--gold);}
+@media(max-width:600px){.mcrd{padding:36px 22px;}}
+
+/* ══════════ PAGE 5 — MUSIC ══════════ */
+.pout{display:flex;justify-content:center;width:100%;}
+.player{background:var(--glass);border:1.5px solid var(--gb);border-radius:26px;padding:36px 44px 28px;
+  backdrop-filter:blur(18px);width:100%;max-width:490px;box-shadow:0 0 80px rgba(91,33,182,.22);}
+.phead{text-align:center;margin-bottom:22px;}
+.vinyl{width:108px;height:108px;
+  background:conic-gradient(from 0deg,#1a0030,#5B21B6,#D97706,#F59E0B,#1a0030,#5B21B6);
+  border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;
+  position:relative;animation:vspin 10s linear infinite;animation-play-state:paused;
+  box-shadow:0 0 0 6px rgba(245,158,11,.1),0 0 40px rgba(91,33,182,.5);}
+.vinyl.go{animation-play-state:running;}
+@keyframes vspin{to{transform:rotate(360deg)}}
+.vinyl::after{content:'';position:absolute;width:22px;height:22px;background:var(--bg);
+  border-radius:50%;border:2px solid rgba(245,158,11,.35);}
+.tnm{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--w);margin-bottom:4px;}
+.tart{font-size:.74rem;color:rgba(196,181,253,.5);letter-spacing:3px;text-transform:uppercase;}
+.wrow{display:flex;align-items:center;justify-content:center;gap:3.5px;height:52px;margin:14px 0;}
+.wb{width:4px;border-radius:3px;background:linear-gradient(to top,#5B21B6,var(--gold));
+  transform-origin:bottom;height:5px;animation:wv .9s ease-in-out infinite alternate;animation-play-state:paused;}
+.wb.on{animation-play-state:running;}
+@keyframes wv{from{height:5px}to{height:var(--wh)}}
+.pwrap{width:100%;height:4px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;}
+.pfill{height:100%;background:linear-gradient(90deg,#5B21B6,var(--gold));border-radius:3px;width:0%;transition:width .4s linear;}
+.ptimes{display:flex;justify-content:space-between;font-size:.68rem;color:rgba(196,181,253,.38);margin-top:5px;}
+.ctrls{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:18px;}
+.ctrl{background:none;border:none;cursor:pointer;color:rgba(196,181,253,.5);font-size:1.1rem;padding:8px;transition:color .2s,transform .2s;}
+.ctrl:hover{color:var(--gold);transform:scale(1.2);}
+.pbtn{width:56px;height:56px;background:linear-gradient(135deg,var(--gold),#D97706);
+  border:none;border-radius:50%;cursor:pointer;color:#1a0030;font-size:1.3rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .2s,box-shadow .2s;box-shadow:0 0 22px rgba(245,158,11,.4);}
+.pbtn:hover{transform:scale(1.1);box-shadow:0 0 44px rgba(245,158,11,.65);}
+.lsbtn{margin-top:18px;display:block;width:100%;
+  background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.22);border-radius:100px;
+  padding:10px;font-family:'Raleway',sans-serif;font-size:.72rem;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(245,158,11,.65);cursor:pointer;transition:background .2s,color .2s;}
+.lsbtn:hover{background:rgba(245,158,11,.18);color:var(--gold);}
+
+/* ══════════ PAGE 6 — BALLOON ══════════ */
+.arena{position:relative;min-height:380px;border-radius:20px;width:100%;
+  background:var(--glass);border:1.5px solid var(--gb);
+  backdrop-filter:blur(10px);overflow:hidden;cursor:crosshair;}
+.balloon{position:absolute;bottom:-80px;font-size:3.2rem;line-height:1;cursor:pointer;
+  animation:rise linear forwards;user-select:none;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));transition:transform .1s;}
+.balloon:hover{transform:scale(1.15);}
+.balloon.pop{animation:pburst .35s ease forwards!important;pointer-events:none;}
+@keyframes rise{from{transform:translateY(0) rotate(0deg);opacity:1}to{transform:translateY(-500px) rotate(15deg);opacity:.6}}
+@keyframes pburst{0%{transform:scale(1);opacity:1}40%{transform:scale(1.7);opacity:.8}100%{transform:scale(0);opacity:0}}
+.bscore{text-align:center;margin-top:16px;font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--lav);}
+.bscore span{color:var(--gold);font-weight:700;}
+.lbtn{display:block;margin:0 auto 22px;padding:12px 30px;
+  background:linear-gradient(135deg,var(--violet),#3B0764);border:1.5px solid rgba(245,158,11,.22);
+  border-radius:100px;font-family:'Raleway',sans-serif;font-size:.82rem;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;color:var(--lav);cursor:pointer;transition:transform .2s,box-shadow .2s;}
+.lbtn:hover{transform:scale(1.05);box-shadow:0 0 30px rgba(91,33,182,.5);}
+.pmsg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Playfair Display',serif;font-size:clamp(1rem,3vw,1.4rem);font-style:italic;
+  color:var(--gl);text-align:center;padding:20px;opacity:0;transition:opacity .7s;pointer-events:none;width:90%;}
+.pmsg.show{opacity:1;}
+
+/* ══════════ PAGE 7 — FLIP ══════════ */
+.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;width:100%;}
+.fc{perspective:1100px;height:200px;cursor:pointer;}
+.fi{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.4,.2,.2,1.4);}
+.fc:hover .fi{transform:rotateY(180deg);}
+.ff,.fb{position:absolute;inset:0;border-radius:18px;backface-visibility:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px 18px;text-align:center;}
+.ff{background:var(--glass);border:1px solid rgba(245,158,11,.12);backdrop-filter:blur(10px);transition:border-color .3s;}
+.fc:hover .ff{border-color:rgba(245,158,11,.3);}
+.fb{background:linear-gradient(135deg,rgba(91,33,182,.6),rgba(45,10,78,.8));
+  border:1px solid rgba(245,158,11,.25);transform:rotateY(180deg);backdrop-filter:blur(10px);}
+.fic{font-size:1.9rem;margin-bottom:9px;}
+.ftit{font-family:'Playfair Display',serif;font-size:.9rem;color:var(--gl);margin-bottom:5px;}
+.fsub{font-size:.72rem;color:rgba(196,181,253,.5);font-weight:300;line-height:1.5;}
+.btext{font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:var(--lav);line-height:1.75;}
+.bhl{color:var(--gl);font-style:normal;font-weight:700;}
+
+/* ══════════ PAGE 8 — FOOTER ══════════ */
+.foot{position:relative;z-index:2;text-align:center;padding:100px 24px 120px;min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.fn{font-family:'Playfair Display',serif;font-size:clamp(3rem,10vw,7rem);font-weight:900;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gl) 50%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 28px rgba(245,158,11,.35));margin-bottom:10px;}
+.fw{font-family:'Dancing Script',cursive;font-size:clamp(1.1rem,3vw,1.7rem);color:var(--lav);margin-bottom:34px;}
+.hts{font-size:2rem;letter-spacing:10px;animation:hb 1.5s ease-in-out infinite;display:inline-block;}
+@keyframes hb{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+.cred{margin-top:34px;font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:rgba(196,181,253,.22);}
+#photoOverlay{
+  position:fixed;inset:0;z-index:1;
+  background-image:url('images/eyes.jpeg');
+  background-size:cover;
+  background-position:center;
+  opacity:.09;
+  pointer-events:none;
+}
+</style>
+</head>
+<body>
+
+<canvas id="bgCv"></canvas>
+<canvas id="fxCv"></canvas>
+<div id="photoOverlay"></div>
+<div id="cur"></div>
+<div id="flt"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">✦ Prachi 💜</div>
+  <div class="nav-links">
+    <button class="nav-btn on"  onclick="goPage(0)">Home</button>
+    <button class="nav-btn"     onclick="goPage(1)">Cake</button>
+    <button class="nav-btn"     onclick="goPage(2)">Photos</button>
+    <button class="nav-btn"     onclick="goPage(3)">Letter</button>
+    <button class="nav-btn"     onclick="goPage(4)">Music</button>
+    <button class="nav-btn"     onclick="goPage(5)">Game</button>
+    <button class="nav-btn"     onclick="goPage(6)">Why You</button>
+    <button class="nav-btn"     onclick="goPage(7)">✨</button>
+  </div>
+</nav>
+
+<!-- PAGE 1 — HERO -->
+<div class="page active" id="pg0">
+  <div class="hero">
+    <div class="hglow"></div>
+    <div class="h-eye">✦ &nbsp; Happy Birthday &nbsp; ✦</div>
+    <div class="h-name" onclick="nameClick(event)">Prachi</div>
+    <div class="h-nick">aka &nbsp;<em>Prachieee</em>&nbsp; &amp; &nbsp;<em>Madam Ji</em> &nbsp;💜</div>
+    <div class="h-rule"></div>
+    <div class="h-tag">✨ Click my name · Explore each chapter above ✨</div>
+    <div class="pg-dots">
+      <div class="dot on" onclick="goPage(0)"></div>
+      <div class="dot" onclick="goPage(1)"></div>
+      <div class="dot" onclick="goPage(2)"></div>
+      <div class="dot" onclick="goPage(3)"></div>
+      <div class="dot" onclick="goPage(4)"></div>
+      <div class="dot" onclick="goPage(5)"></div>
+      <div class="dot" onclick="goPage(6)"></div>
+      <div class="dot" onclick="goPage(7)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2 — CAKE -->
+<div class="page" id="pg1">
+  <div class="blk">
+    <div class="eye">time to celebrate</div>
+    <h2 class="sh">Make a Wish, Madam Ji 🎂</h2>
+    <div class="cake-wrap">
+      <div class="cake-scene">
+        <!-- t1 carries the candles row -->
+        <div class="tier t1" style="position:relative;">
+          <div class="candles-row">
+            <div class="cw"><div class="flame" id="f0"></div><div class="cbody c1"></div></div>
+            <div class="cw"><div class="flame" id="f1"></div><div class="cbody c2"></div></div>
+            <div class="cw"><div class="flame" id="f2"></div><div class="cbody c3"></div></div>
+            <div class="cw"><div class="flame" id="f3"></div><div class="cbody c4"></div></div>
+            <div class="cw"><div class="flame" id="f4"></div><div class="cbody c5"></div></div>
+          </div>
+        </div>
+        <div class="tier t2"></div>
+        <div class="tier t3"></div>
+        <div class="plate"></div>
+      </div>
+      <button class="blow-btn" id="blowBtn" onclick="blowCandles()">🌬️ &nbsp; Blow Out the Candles!</button>
+      <div class="wish" id="wish">
+        <span class="wish-emoji">🌟</span>
+        <div class="wish-text">"Close your eyes, Prachieee...<br>Whatever you wished for — <em>you deserve it.</em><br>And so much more. 💜"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 3 — PHOTOS -->
+<div class="page" id="pg2">
+  <div class="blk">
+    <div class="eye">our little world</div>
+    <h2 class="sh">Moments with Madam Ji 📸<br>
+      <small style="font-size:.5em;color:rgba(196,181,253,.45);font-weight:300;letter-spacing:4px">&nbsp;</small>
+    </h2>
+    <div class="pg6">
+      <div class="pol">
+        <div class="pib"><img src="images/1.jpeg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"><div class="pph"><div class="ic">🌸</div><div class="ht">photo1.jpg</div></div></div>
+        <div class="pcap">That day we laughed the first time</div>
+      </div>
+      <div class="pol">
+        <div class="pib"><img src="images/2.jpeg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"><div class="pph"><div class="ic">✨</div><div class="ht">photo2.jpg</div></div></div>
+        <div class="pcap">Bestie goals, my personal favourite ✨</div>
+      </div>
+      <div class="pol">
+        <div class="pib"><img src="images/3.jpeg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"><div class="pph"><div class="ic">👑</div><div class="ht">photo3.jpg</div></div></div>
+        <div class="pcap">Absolutely iconic 👑</div>
+      </div>
+      <div class="pol">
+        <div class="pib"><img src="images/4.jpeg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"><div class="pph"><div class="ic">💜</div><div class="ht">photo4.jpg</div></div></div>
+        <div class="pcap">Just us moments 💜</div>
+      </div>
+      <div class="pol">
+        <div class="pib"><img src="images/5.jpeg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"><div class="pph"><div class="ic">🌙</div><div class="ht">photo5.jpg</div></div></div>
+        <div class="pcap">Some marathi moments 🌙</div>
+      </div>
+      <div class="pol">
+        <div class="pib"><img src="images/6.jpeg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"><div class="pph"><div class="ic">🌟</div><div class="ht">photo6.jpg</div></div></div>
+        <div class="pcap">Just Prachieee  🌟</div>  
+      </div>
+      <div class="pol">
+        <div class="pib"><img src="images/7.jpeg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"><div class="pph"><div class="ic">🎉</div><div class="ht">photo7.jpg</div></div></div>
+        <div class="pcap">That spontaneous day  out 🎉</div>
+      </div>
+      <div class="pol">
+        <div class="pib"><img src="images/8.jpeg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"><div class="pph"><div class="ic">💫</div><div class="ht">photo8.jpg</div></div></div>
+        <div class="pcap">Shopping vibes 💫</div>
+      </div>
+      <div class="pol">
+        <div class="pib"><img src="images/9.jpeg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"><div class="pph"><div class="ic">🌈</div><div class="ht">photo9.jpg</div></div></div>
+        <div class="pcap">Rainy days and rainbow moods 🌈</div>
+      </div>
+      <div class="pol">
+        <div class="pib"><img src="images/10.jpeg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"><div class="pph"><div class="ic">🍂</div><div class="ht">photo10.jpg</div></div></div>
+        <div class="pcap">Lost into the eyes 🍂</div>
+      </div>
+      <div class="pol">
+        <div class="pib"><img src="images/11.jpeg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"><div class="pph"><div class="ic">🌻</div><div class="ht">photo11.jpg</div></div></div>
+        <div class="pcap">Western beauty 🌻</div>
+      </div>  
+      <div class="pol">
+        <div class="pib"><img src="images/12.jpeg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"><div class="pph"><div class="ic">🍕</div><div class="ht">photo12.jpg</div></div></div>
+        <div class="pcap">Last one but the best one 💜</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 4 — LETTER -->
+<div class="page" id="pg3">
+  <div class="blk">
+    <div class="eye">straight from the heart</div>
+    <h2 class="sh">A little note for you, Prachieee 💌</h2>
+    <div class="mout">
+      <div class="mcrd">
+        <div class="mtxt" id="mtxt">
+          Happiest Birthday <span class="hl">Madam Ji</span> 🩷<br><br>
+          You are one of the most <span class="hl">real, kind, and extraordinary</span> people I've ever had the luck of knowing. The pretty soul that entered into my life and made it memorable 💞 yes it's you, Madam Ji....<br><br>
+          Khar sangaycha tar, tu khup special ahes maza life madhe, mhanje genuinely evdhi chaan cute best friend milali na mala, ki me kharach swatla <span class="hl">lucky</span> manto ki I have you...🙂<br><br>
+          Kuthlihi vel asu de, kasahi mood asu de, tu always maza sathi astes kayam. Maza sobat kahi pn zhala tar pahila msg keva call tulach asto, ani tu pn kadhi "not interested", "nako na ata" mhanat nahis. He kharach khup matter karta maza sathi.<br><br>
+          Tu khupach helpful ahes shembede 🤩 helpful mhanaya peksha mee tula <span class="hl">lady luck</span> 🤞 manel — yes, tu ahes maza sathi lady luck. Kevha, kuthe, kuthlihi ashirwad le ani kaam chalu ho jaayel...😁<br><br>
+          Madam Ji, apan doghe sobat kiti masti keli ahe, kiti vedya goshti keli ahe 😅, kiti hasloy ki shevti pot dukhayla laagla mhanaycha vaa 🥹 he saglе moments mala kadhich visarayche nahit. Pudhcha vel maza mahit nahi kasa asel, kay asel, pn apan kayam sobat asu he mala mahit ahe... I am just one call away.<br><br>
+          Tu sobat asles na, ki saglya vibes <span class="hl">positive positive</span> houn jatat 😁 ani special thank you tula, malaa ratri zopnyacha vel ase kiti pn kaam asel, kevha nustach apan jar 8 la bhetlo asel tarihi tu maza call 10 la nakki uchaltes... such a great thing 🤩<br><br>
+          Ha, ani to photo me ka attach kela ahe tar — I love clicking pictures of you and storing them in my memories and mind 🤭 aaj paryant tujhe khup chaan chaan bhari bhari photos kadhle ahet, pn ha photo nehmi pahila ki maza face var ek smile yete, mast, I just love this one 💞<br><br>
+          Tula khup tras deto na mee shembede 😁😁 pn kay karu, lagto thoda tras 😅. Just because, happy always — mala fakta tujha happy ani <span class="hl">smile</span> wala face baghaycha ahe 👀<br><br>
+          Tasa tuza sathi bolayla khup kahi ahe, pn he WhatsApp wale na... yancha tar....<br><br>
+          Bas evdhach sangaycha ahe ki tu <span class="hl">best</span> ahes, tu <span class="hl">great</span> ahes, ani I deserve all the good 😊. Me nehmi asel tuza sathi kayam... Thank you for everything Madam Ji 🩷, so lucky to have you in my life 😀<br><br>
+          &amp; very much proud of you, my <span class="hl">decision maker</span> 🤩<br><br>
+          Love you &amp; miss you a lot 🫶<br>
+          Cheers to the day shembede 🥂 have a great year ahead 💗
+        </div>
+        <div class="msig">— Tuzach Sujal B 😅<br>(PA Prachi ji Bhombe)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 5 — MUSIC -->
+<div class="page" id="pg4">
+  <div class="blk">
+    <div class="eye">our playlist energy</div>
+    <h2 class="sh">A song for Madam Ji 🎵</h2>
+    <div class="pout">
+      <div class="player">
+        <audio id="aud" loop src="Jhoom Rb Mix Ali Zafar 128 Kbps.mp3"></audio>
+        <div class="phead">
+          <div class="vinyl" id="vnl"></div>
+          <div class="tnm" id="tnm">Birthday Song</div>
+          <div class="tart" id="tart">Prachi's Vibe ✨</div>
+        </div>
+        <div class="wrow" id="wrow"></div>
+        <div class="pwrap"><div class="pfill" id="pfill"></div></div>
+        <div class="ptimes"><span id="curT">0:00</span><span id="totT">0:00</span></div>
+        <div class="ctrls">
+          <button class="ctrl" onclick="prevS()">⏮</button>
+          <button class="pbtn" id="pbtn" onclick="togglePlay()">▶</button>
+          <button class="ctrl" onclick="nextS()">⏭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 6 — BALLOON GAME -->
+<div class="page" id="pg5">
+  <div class="blk">
+    <div class="eye">just for fun, Madam Ji</div>
+    <h2 class="sh">Pop Every Balloon! 🎈</h2>
+    <button class="lbtn" onclick="launch()">🎈 Launch Balloons!</button>
+    <div class="arena" id="arena">
+      <div class="pmsg" id="pmsg">🎉 You popped them all!<br><em style="font-size:.85em">"Just like you pop into my heart every single day, Prachieee 💜"</em></div>
+    </div>
+    <div class="bscore">Popped: <span id="pp">0</span> / <span id="tt">0</span></div>
+  </div>
+</div>
+
+<!-- PAGE 7 — FLIP CARDS -->
+<div class="page" id="pg6">
+  <div class="blk">
+    <div class="eye">because you should know</div>
+    <h2 class="sh">Why you're my person 💜<br>
+      <small style="font-size:.5em;color:rgba(196,181,253,.4);font-weight:300;letter-spacing:4px">Hover each card to reveal more</small>
+    </h2>
+    <div class="rgrid">
+      <div class="fc"><div class="fi">
+        <div class="ff"><div class="fic">🌟</div><div class="ftit">Makes everything brighter</div><div class="fsub">Hover to see ✨</div></div>
+        <div class="fb"><div class="btext">Your energy is genuinely <span class="bhl">contagious</span>. Any room, any mood — you make it so much better. That's rare magic.</div></div>
+      </div></div>
+      <div class="fc"><div class="fi">
+        <div class="ff"><div class="fic">💬</div><div class="ftit">World's best listener</div><div class="fsub">Hover to see ✨</div></div>
+        <div class="fb"><div class="btext">You never just hear me. You actually <span class="bhl">listen</span> — with your whole heart. That means more than words can say.</div></div>
+      </div></div>
+      <div class="fc"><div class="fi">
+        <div class="ff"><div class="fic">😂</div><div class="ftit">No one makes me laugh like you</div><div class="fsub">Hover to see ✨</div></div>
+        <div class="fb"><div class="btext">The kind that makes your stomach hurt &amp; eyes water. We've had <span class="bhl">too many</span> of those moments to count.</div></div>
+      </div></div>
+      <div class="fc"><div class="fi">
+        <div class="ff"><div class="fic">🦋</div><div class="ftit">Always there. Always.</div><div class="fsub">Hover to see ✨</div></div>
+        <div class="fb"><div class="btext">Good days, bad ones, weird 2am texts — you just <span class="bhl">show up</span>. Every. Single. Time. That's everything.</div></div>
+      </div></div>
+      <div class="fc"><div class="fi">
+        <div class="ff"><div class="fic">👑</div><div class="ftit">Unapologetically herself</div><div class="fsub">Hover to see ✨</div></div>
+        <div class="fb"><div class="btext">You never try to be anyone other than exactly who you are. That kind of <span class="bhl">confidence</span> is quietly beautiful.</div></div>
+      </div></div>
+      <div class="fc"><div class="fi">
+        <div class="ff"><div class="fic">💜</div><div class="ftit">She's just Prachi</div><div class="fsub">Hover to see ✨</div></div>
+        <div class="fb"><div class="btext">No words really cover it. She's just <span class="bhl">Prachieee</span> — and honestly, that alone is the best thing in the world.</div></div>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 8 — FINALE -->
+<div class="page" id="pg7">
+  <footer class="foot">
+    <div class="fn">Prachi</div>
+    <div class="fw">Wishing you the most beautiful year ahead ✨</div>
+    <div class="hts">💜 🌟 💜</div>
+    <div style="margin-top:40px;font-family:'Playfair Display',serif;font-style:italic;
+      font-size:clamp(.9rem,2vw,1.15rem);color:var(--lav);max-width:560px;line-height:1.9;">
+      "Here's to another year of chaos, laughter, late nights, and the kind of friendship people write songs about.
+      You deserve every good thing this universe has to offer, Madam Ji — starting today."
+    </div>
+    <div style="margin-top:14px;font-family:'Dancing Script',cursive;font-size:1.3rem;color:var(--gold);">— with love, always 💜</div>
+    <div class="cred" style="margin-top:50px;">Made with love · Just for Madam Ji</div>
+  </footer>
+</div>
+
+<!-- BOTTOM ARROWS — always visible -->
+<button class="parrow" id="pPrev" onclick="goPage(cur-1)">← Prev</button>
+<button class="parrow" id="pNext" onclick="goPage(cur+1)">Next →</button>
+
+<script>
+/* ── PAGE SYSTEM ── */
+let cur=0;const TOTAL=8;
+function goPage(n){
+  if(n<0||n>=TOTAL)return;
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach((b,i)=>b.classList.toggle('on',i===n));
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===n));
+  const pg=document.getElementById('pg'+n);
+  pg.classList.add('active');
+  void pg.offsetWidth;
+  pg.classList.add('page-fade');
+  setTimeout(()=>pg.classList.remove('page-fade'),600);
+  cur=n;
+  // arrow visibility
+  document.getElementById('pPrev').style.visibility=n===0?'hidden':'visible';
+  document.getElementById('pNext').style.visibility=n===TOTAL-1?'hidden':'visible';
+  window.scrollTo(0,0);
+  if(n===3)burst(innerWidth/2,innerHeight*.4,40,true);
+  if(n===7){for(let i=0;i<8;i++)setTimeout(()=>burst(Math.random()*innerWidth,Math.random()*innerHeight*.7,55,true),i*160);}
+}
+// init
+document.getElementById('pPrev').style.visibility='hidden';
+
+/* ── CANVAS ── */
+const bgCv=document.getElementById('bgCv'),bgX=bgCv.getContext('2d');
+const fxCv=document.getElementById('fxCv'),fxX=fxCv.getContext('2d');
+let W,H;
+function rsz(){W=bgCv.width=fxCv.width=innerWidth;H=bgCv.height=fxCv.height=innerHeight;}
+rsz();window.addEventListener('resize',rsz);
+
+/* ── CURSOR ── */
+const curEl=document.getElementById('cur');
+const GL=['✨','⭐','💫','✦','·','🌟'];let lt=0;
+document.addEventListener('mousemove',e=>{
+  curEl.style.left=e.clientX+'px';curEl.style.top=e.clientY+'px';
+  const n=Date.now();if(n-lt<55)return;lt=n;
+  const s=document.createElement('div');s.className='trail';
+  s.textContent=GL[Math.floor(Math.random()*GL.length)];
+  s.style.left=(e.clientX+(Math.random()-.5)*16)+'px';
+  s.style.top=(e.clientY+(Math.random()-.5)*16)+'px';
+  document.body.appendChild(s);setTimeout(()=>s.remove(),850);
+});
+
+/* ── STARS ── */
+const STARS=Array.from({length:230},()=>({
+  x:Math.random()*2000,y:Math.random()*2000,r:Math.random()*1.4+.25,
+  ph:Math.random()*Math.PI*2,sp:Math.random()*.006+.002
+}));
+let shooters=[];
+function mkShoot(){shooters.push({x:Math.random()*W*.65,y:Math.random()*H*.35,
+  vx:9+Math.random()*6,vy:3+Math.random()*5,len:75+Math.random()*80,life:1});}
+setInterval(()=>{if(Math.random()<.5)mkShoot();},3500);
+(function drawBg(){
+  bgX.clearRect(0,0,W,H);
+  STARS.forEach(s=>{s.ph+=s.sp;const a=.2+Math.sin(s.ph)*.25;
+    bgX.beginPath();bgX.arc(s.x%W,s.y%H,s.r,0,Math.PI*2);
+    bgX.fillStyle=`rgba(253,230,138,${a})`;bgX.fill();});
+  shooters=shooters.filter(s=>s.life>0);
+  shooters.forEach(s=>{s.x+=s.vx;s.y+=s.vy;s.life-=.025;
+    const g=bgX.createLinearGradient(s.x,s.y,s.x-s.vx*(s.len/10),s.y-s.vy*(s.len/10));
+    g.addColorStop(0,`rgba(253,230,138,${s.life})`);g.addColorStop(1,'transparent');
+    bgX.beginPath();bgX.moveTo(s.x,s.y);bgX.lineTo(s.x-s.vx*(s.len/10),s.y-s.vy*(s.len/10));
+    bgX.strokeStyle=g;bgX.lineWidth=2;bgX.stroke();});
+  requestAnimationFrame(drawBg);
+})();
+
+/* ── FX ── */
+let parts=[];
+const COLS=['#F59E0B','#FDE68A','#C4B5FD','#EC4899','#F472B6','#FFF','#A78BFA','#67E8F9'];
+function burst(x,y,n=50,big=false){
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2,sp=big?(4+Math.random()*10):(2+Math.random()*7);
+    parts.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-(big?5:3),
+      r:big?(3+Math.random()*5):(2+Math.random()*3.5),
+      col:COLS[Math.floor(Math.random()*COLS.length)],alpha:1,grav:.2+Math.random()*.15,
+      rot:Math.random()*360,rs:(Math.random()-.5)*12,sh:Math.random()<.5?'r':'c'});
+  }
+}
+(function drawFx(){
+  fxX.clearRect(0,0,W,H);parts=parts.filter(p=>p.alpha>.02);
+  parts.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;p.vy+=p.grav;p.alpha-=.016;p.rot+=p.rs;
+    fxX.save();fxX.globalAlpha=p.alpha;fxX.translate(p.x,p.y);fxX.rotate(p.rot*Math.PI/180);
+    fxX.fillStyle=p.col;
+    if(p.sh==='c'){fxX.beginPath();fxX.arc(0,0,p.r,0,Math.PI*2);fxX.fill();}
+    else{fxX.fillRect(-p.r/2,-p.r*.35,p.r,p.r*.7);}
+    fxX.restore();});
+  requestAnimationFrame(drawFx);
+})();
+document.addEventListener('click',e=>{
+  if(e.target.closest('button,.pol,.balloon,.fc,audio'))return;
+  burst(e.clientX,e.clientY,28);
+});
+
+/* ── FLOATERS ── */
+const FW=document.getElementById('flt');
+['🌸','✨','💜','🌙','⭐','🌟','🎀'].forEach(sym=>{
+  for(let i=0;i<3;i++){
+    const f=document.createElement('div');f.className='floater';f.textContent=sym;
+    f.style.left=Math.random()*100+'vw';f.style.fontSize=(Math.random()*.9+.6)+'rem';
+    f.style.animationDuration=(Math.random()*12+10)+'s';f.style.animationDelay=(Math.random()*14)+'s';
+    f.style.opacity=Math.random()*.3+.08;FW.appendChild(f);
+  }
+});
+
+/* ── HERO ── */
+function nameClick(e){
+  burst(e.clientX,e.clientY,80,true);
+  for(let i=0;i<10;i++)setTimeout(()=>burst(Math.random()*W,Math.random()*H*.5,45,true),i*130);
+}
+
+/* ── CAKE ── */
+let blown=false;
+function blowCandles(){
+  if(blown)return;blown=true;
+  const flames=document.querySelectorAll('.flame');
+  flames.forEach((f,i)=>setTimeout(()=>{
+    const r=f.getBoundingClientRect();f.classList.add('out');burst(r.left+6,r.top+6,15);
+  },i*170));
+  setTimeout(()=>{
+    const btn=document.getElementById('blowBtn');
+    btn.textContent='🎉 Wish Granted!';
+    btn.style.background='linear-gradient(135deg,#5B21B6,#3B0764)';
+    btn.style.color='var(--lav)';btn.disabled=true;
+    document.getElementById('wish').classList.add('show');
+    for(let i=0;i<8;i++)setTimeout(()=>burst(Math.random()*W,Math.random()*H*.6,60,true),i*200);
+  },flames.length*170+350);
+}
+
+/* ── MUSIC ── */
+const aud=document.getElementById('aud');
+let playing=false,pInv;
+const songs=[
+  {n:'Dedicated',a:'For Prachi 💜',src:'Jhoom Rb Mix Ali Zafar 128 Kbps.mp3'},
+  {n:'Afreen Afreen',a:'For Prachi 💜',src:'Afreen Afreen.mp3'},
+];let si=0;
+aud.onloadedmetadata = () => document.getElementById('totT').textContent = fmt(aud.duration);
+updTrack();
+const wrow=document.getElementById('wrow');
+[10,20,34,24,44,30,48,22,40,14,28,46,20,36,24,44,16,38,22,32,12,24,40,18,30].forEach((h,i)=>{
+  const b=document.createElement('div');b.className='wb';
+  b.style.setProperty('--wh',h+'px');b.style.animationDelay=(i*.065)+'s';wrow.appendChild(b);
+});
+function togglePlay(){
+  playing=!playing;
+  document.getElementById('pbtn').textContent=playing?'⏸':'▶';
+  document.getElementById('vnl').classList.toggle('go',playing);
+  document.querySelectorAll('.wb').forEach(b=>b.classList.toggle('on',playing));
+  if(aud.src&&aud.src!==location.href){playing?aud.play().catch(()=>{}):aud.pause();}
+  if(playing){pInv=setInterval(()=>{
+    if(aud.duration){
+      document.getElementById('pfill').style.width=(aud.currentTime/aud.duration*100)+'%';
+      document.getElementById('curT').textContent=fmt(aud.currentTime);
+      document.getElementById('totT').textContent=fmt(aud.duration);
+    }
+  },300);}else clearInterval(pInv);
+}
+function fmt(s){if(!s||isNaN(s))return'0:00';return Math.floor(s/60)+':'+(Math.floor(s%60)<10?'0':'')+Math.floor(s%60);}
+function prevS(){si=(si-1+songs.length)%songs.length;updTrack();}
+function nextS(){si=(si+1)%songs.length;updTrack();}
+function updTrack(){
+  const track=songs[si];
+  aud.src=track.src;
+  aud.load();
+  document.getElementById('tnm').textContent=track.n;
+  document.getElementById('tart').textContent=track.a;
+  document.getElementById('pfill').style.width='0%';
+  document.getElementById('curT').textContent='0:00';
+  document.getElementById('totT').textContent='0:00';
+  if(playing)aud.play().catch(()=>{});
+}
+const pwrap=document.querySelector('.pwrap');
+pwrap.addEventListener('click',(e)=>{
+  if(!aud.duration)return;
+  const rect=pwrap.getBoundingClientRect();
+  const percent=(e.clientX-rect.left)/rect.width;
+  aud.currentTime=percent*aud.duration;
+});
+
+/* ── BALLOONS ── */
+const BSYM=['🎈','🎀','🎊','🎁','🌸','💜','🌟','✨','🍭','🦋'];
+let totB=0,popB=0;
+function launch(){
+  const arena=document.getElementById('arena');
+  arena.querySelectorAll('.balloon').forEach(b=>b.remove());
+  document.getElementById('pmsg').classList.remove('show');
+  totB=12;popB=0;
+  document.getElementById('tt').textContent=totB;
+  document.getElementById('pp').textContent=0;
+  for(let i=0;i<totB;i++){
+    setTimeout(()=>{
+      const b=document.createElement('div');b.className='balloon';
+      b.textContent=BSYM[Math.floor(Math.random()*BSYM.length)];
+      b.style.left=(18+Math.random()*(arena.offsetWidth-70))+'px';
+      b.style.fontSize=(2.2+Math.random()*1.6)+'rem';
+      const dur=4+Math.random()*4;b.style.animationDuration=dur+'s';
+      b.onclick=()=>popBalloon(b);arena.appendChild(b);
+      setTimeout(()=>{if(b.parentNode&&!b.classList.contains('pop'))b.remove();},dur*1000+500);
+    },i*250+Math.random()*350);
+  }
+}
+function popBalloon(el){
+  if(el.classList.contains('pop'))return;
+  el.classList.add('pop');
+  const r=el.getBoundingClientRect();burst(r.left+20,r.top+20,28);
+  popB++;document.getElementById('pp').textContent=popB;
+  setTimeout(()=>el.remove(),360);
+  if(popB>=totB)setTimeout(()=>{
+    document.getElementById('pmsg').classList.add('show');
+    for(let i=0;i<10;i++)setTimeout(()=>burst(Math.random()*W,Math.random()*H,55,true),i*150);
+  },500);
+}
+
+/* ── LOAD CONFETTI ── */
+window.addEventListener('load',()=>{
+  setTimeout(()=>{for(let i=0;i<7;i++)setTimeout(()=>burst(Math.random()*W,Math.random()*H*.45,65,true),i*180);},1300);
+});
+</script>
+</body>
+</html>
